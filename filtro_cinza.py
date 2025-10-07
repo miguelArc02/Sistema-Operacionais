@@ -42,7 +42,7 @@ def main():
     print(f"Imagem convertida com sucesso e salva em '{caminho_saida}'")
     print(f"Tempo de execução (sequencial): {tempo_execucao_ms:.2f} ms\n")
 
-    inicio2 = time.time()
+    inicio = time.time()
     print(f"Processando a imagem '{caminho_entrada}' com multithreading...")
 
     num_threads = 6
@@ -68,15 +68,14 @@ def main():
     for j in range(num_threads):
         imagem_processada2.paste(resultados[j], (j * intervalo, 0))
 
-    fim2 = time.time()
+    fim = time.time()
     
+    tempo_execucao_ms = (fim - inicio) * 1000
     caminho_multithread = caminho_saida.replace(".jpg", "_multithread.jpg")
     imagem_processada2.save(caminho_multithread)
     
-    tempo_execucao_ms2 = (fim2 - inicio2) * 1000
-    
     print(f"Imagem convertida com sucesso e salva em '{caminho_multithread}'")
-    print(f"Tempo de execução (sequencial): {tempo_execucao_ms2:.2f} ms")
+    print(f"Tempo de execução (sequencial): {tempo_execucao_ms:.2f} ms")
 
 if __name__ == "__main__":
     main()
